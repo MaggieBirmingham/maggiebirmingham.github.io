@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership | Maggie Birmingham</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f9f6f1;
+      --sage: #7a8c6e;
+      --deep: #2c3028;
+      --warm: #b5956a;
+      --light: #e8e2d9;
+      --mid: #d4cec5;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--deep); overflow-x: hidden; }
+
+    /* Nav */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(249,246,241,0.95); border-bottom: 0.5px solid var(--light); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(6px); }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--deep); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; border-bottom: 1px solid var(--warm); padding-bottom: 2px; }
+
+    /* Hero banner */
+    .hero-banner {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+    }
+    .hero-banner img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block;
+    }
+    .hero-banner::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(44,48,40,0.15) 0%, rgba(44,48,40,0.65) 100%);
+    }
+    .hero-banner-content {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      padding: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.8rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; color: #fff; line-height: 1; }
+    .hero-title em { font-style: italic; color: var(--warm); }
+
+    /* Journey section */
+    .journey {
+      max-width: 1100px; margin: 0 auto; padding: 5rem 3rem;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;
+    }
+    .journey-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300; font-style: italic;
+      color: var(--warm); position: sticky; top: 6rem;
+      line-height: 1.2;
+    }
+    .journey-text p {
+      font-size: 1rem; font-weight: 300; line-height: 1.9;
+      color: var(--deep); opacity: 0.82; margin-bottom: 1.6rem;
+    }
+    .journey-text p:last-child { margin-bottom: 0; }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid var(--warm);
+      padding: 1.2rem 0 1.2rem 1.8rem;
+      margin: 2rem 0;
+    }
+    .pull-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-style: italic; font-weight: 300;
+      line-height: 1.6; color: var(--deep); opacity: 1 !important;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      background: var(--deep); padding: 3rem;
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat { text-align: center; padding: 0 4rem; border-right: 0.5px solid rgba(255,255,255,0.12); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--warm); line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+    /* Orgs */
+    .orgs { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; }
+    .orgs-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); margin-bottom: 3rem; }
+
+    .org-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border: 0.5px solid var(--light); border-radius: 4px; overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .org-card.reverse { direction: rtl; }
+    .org-card.reverse > * { direction: ltr; }
+
+    .org-card-img { position: relative; overflow: hidden; min-height: 340px; }
+    .org-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .org-card:hover .org-card-img img { transform: scale(1.03); }
+
+    .org-card-body { padding: 3rem; display: flex; flex-direction: column; justify-content: center; background: var(--cream); }
+    .org-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .org-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--deep); margin-bottom: 1.2rem; line-height: 1.1; }
+    .org-title em { font-style: italic; color: var(--warm); }
+    .org-desc { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: var(--deep); opacity: 0.75; margin-bottom: 1.8rem; }
+    .org-highlights { list-style: none; margin-bottom: 2rem; }
+    .org-highlights li { font-size: 0.8rem; font-weight: 300; line-height: 1.6; padding: 0.5rem 0; border-bottom: 0.5px solid var(--light); display: flex; gap: 0.8rem; align-items: baseline; }
+    .org-highlights li:last-child { border-bottom: none; }
+    .org-highlights li::before { content: '—'; color: var(--warm); flex-shrink: 0; font-size: 0.8rem; }
+    .org-role { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.9rem; border: 0.5px solid var(--warm); color: var(--warm); border-radius: 2rem; }
+
+    /* Photo mosaic */
+    .mosaic { max-width: 1100px; margin: 0 auto; padding: 0 3rem 5rem; }
+    .mosaic-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); margin-bottom: 2rem; }
+    .mosaic-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 1rem; }
+    .mosaic-item { overflow: hidden; border-radius: 2px; }
+    .mosaic-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .mosaic-item:hover img { transform: scale(1.04); }
+    .mosaic-item.tall { grid-row: span 2; }
+
+    /* Footer */
+    footer { background: var(--deep); padding: 2.5rem 3rem; text-align: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--cream); margin-bottom: 0.3rem; }
+    .footer-sub { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero-banner { height: 50vh; }
+      .hero-banner-content { padding: 1.5rem; }
+      .journey { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+      .journey-label { position: static; }
+      .stats-strip { flex-wrap: wrap; gap: 2rem; padding: 2rem 1.5rem; }
+      .stat { border-right: none; padding: 0 2rem; }
+      .orgs { padding: 3rem 1.5rem; }
+      .org-card { grid-template-columns: 1fr; }
+      .org-card.reverse { direction: ltr; }
+      .org-card-img { min-height: 240px; }
+      .mosaic { padding: 0 1.5rem 3rem; }
+      .mosaic-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .mosaic-item.tall { grid-row: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">Maggie Birmingham</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="leadership.html" class="active">Leadership</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="#">Abroad</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero-banner">
+  <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/f4c932de-cafb-4adb-b9d4-9d34a1978fae/ER-LA%40SAlumniPanel-18.jpg" alt="Leadership" />
+  <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;padding:3rem;max-width:none;">
+    <div style="max-width:1100px;width:100%;margin:0 auto;">
+      <p class="hero-eyebrow">Maggie Birmingham</p>
+      <h1 class="hero-title">Lead with <em>purpose,</em><br>impact with action.</h1>
+    </div>
+  </div>
+</div>
+
+<!-- Journey -->
+<section class="journey">
+  <div>
+    <h2 class="journey-label">My Leadership<br>Journey</h2>
+  </div>
+  <div class="journey-text">
+    <p>My leadership journey started when I was just six years old, on a soccer field. Obviously, when you're that young, it's not super serious — but I've always been pretty competitive. I became a goalie, which, as any soccer player knows, means you're basically managing the entire field. For 13 years, I played that position, analyzing plays, calling out directions, and protecting the goal.</p>
+
+    <div class="pull-quote">
+      <p>"For me, leadership has never been about a title — it's always been about making an impact."</p>
+    </div>
+
+    <p>When I got to college, I wanted to try everything — and I did. I joined almost every club that caught my attention. Eventually, I found the ones that meant something to me. I've always been someone who steps up to help, so even in freshman year, when I was just a member, I was already working behind the scenes. By the time elections rolled around, I was essentially already in an officer role.</p>
+
+    <p>Since then, I've held executive board positions in five organizations — Delta Sigma Pi, The Leadership Academy, American Cancer Society, and more. Whether I'm organizing an event or working behind the scenes, I genuinely enjoy contributing to something bigger than myself.</p>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Exec board positions</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">13</div>
+    <div class="stat-label">Years as team captain</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">106%</div>
+    <div class="stat-label">Membership growth</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">22</div>
+    <div class="stat-label">Interviews conducted</div>
+  </div>
+</div>
+
+<!-- Organizations -->
+<section class="orgs">
+  <p class="orgs-label">Organizations</p>
+
+  <!-- Delta Sigma Pi -->
+  <div class="org-card">
+    <div class="org-card-img">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/7cc113f2-696f-4179-bec8-728c6da80519/IMG_3178.jpg" alt="Delta Sigma Pi" />
+    </div>
+    <div class="org-card-body">
+      <p class="org-tag">Professional Fraternity</p>
+      <h2 class="org-title">Delta <em>Sigma Pi</em></h2>
+      <p class="org-desc">Delta Sigma Pi is a co-ed professional business fraternity. I've been involved since my first semester at RIT — this organization pushed me out of my comfort zone, helped me develop critical professional skills, and build an incredible network.</p>
+      <ul class="org-highlights">
+        <li>Planned and executed 6 recruitment events, conducting 22 interviews</li>
+        <li>Increased chapter membership by 106% as Senior Vice President</li>
+        <li>Managed marketing strategies boosting event attendance by 37%</li>
+      </ul>
+      <span class="org-role">Senior VP & Marketing Chair</span>
+    </div>
+  </div>
+
+  <!-- Leadership Academy -->
+  <div class="org-card reverse">
+    <div class="org-card-img">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/4b03cdfb-14ae-4936-b2a7-d808636a3146/Screenshot+2025-07-15+at+1.24.21%E2%80%AFPM.jpg" alt="Leadership Academy" />
+    </div>
+    <div class="org-card-body">
+      <p class="org-tag">RIT Program</p>
+      <h2 class="org-title">The Leadership <em>Academy</em></h2>
+      <p class="org-desc">The Leadership Academy is funded by Rochester Institute of Technology and housed in Saunders College of Business. Its goal is to help students build the leadership skills they need to succeed in the workplace — open to anyone on campus.</p>
+      <ul class="org-highlights">
+        <li>Directed mentor training with practical skills for guiding first-year students</li>
+        <li>Organized and led 4 networking events for first-year integration</li>
+        <li>Cultivated impactful mentorship relationships across cohorts</li>
+      </ul>
+      <span class="org-role">Director of Peer Mentorship</span>
+    </div>
+  </div>
+</section>
+
+<!-- Photo mosaic -->
+<section class="mosaic">
+  <p class="mosaic-label">Moments in leadership</p>
+  <div class="mosaic-grid">
+    <div class="mosaic-item tall">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/bd808efd-0be9-4b56-843c-a6d4a4921651/LA%40SAlumniPanel-03.jpg" alt="Leadership moment" />
+    </div>
+    <div class="mosaic-item">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/3911db54-e8f7-405c-8496-7e96eb69b73d/IMG_1435.jpeg" alt="Soccer" />
+    </div>
+    <div class="mosaic-item">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/0c973075-613c-48f8-a81b-1504905681dd/IMG_1936.png" alt="DSP" />
+    </div>
+    <div class="mosaic-item">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/1803c6ea-f695-40e0-843a-ba4cb0e4afd0/IMG_4221.png" alt="Leadership event" />
+    </div>
+    <div class="mosaic-item">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/77a06c9c-32f6-4610-811c-49237a0619c2/Screenshot+2025-07-15+at+1.24.10%E2%80%AFPM.jpg" alt="Leadership Academy" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Maggie Birmingham</div>
+  <div class="footer-sub">Marketing & Management Student · Rochester Institute of Technology</div>
+</footer>
+
+</body>
+</html>
