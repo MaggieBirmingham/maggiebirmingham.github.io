@@ -31,8 +31,9 @@
     .nav-links a:hover, .nav-links a.active { opacity: 1; }
 
     /* Hero: two-photo layout */
-    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; overflow: hidden; }
-    .hero-photos { display: grid; grid-template-rows: 1fr 1fr; overflow: hidden; }
+    .hero-image { position: relative; overflow: hidden; }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--cream)); }
     .hero-photo { position: relative; overflow: hidden; }
     .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
     .hero-photo.face img { object-position: center 15%; }
@@ -114,10 +115,9 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-photos">
-    <div class="hero-photo">
-      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/7cf0a72d-1a8c-41f7-97b3-77b73ccdc5e0/0d33c71c-0c2e-4329-9b08-a252c5f0767d.jpg" alt="Ocean background" />
-    </div>
+  <div class="hero-image">
+    <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/cb33dad0-bce7-4086-b1b6-9441c12fd75a/IMG_0568.jpg" alt="Maggie Birmingham" />
+  </div>
     <div class="hero-photo face">
       <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/cb33dad0-bce7-4086-b1b6-9441c12fd75a/IMG_0568.jpg" alt="Maggie Birmingham" />
     </div>
