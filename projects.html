@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Maggie Birmingham</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f9f6f1;
+      --sage: #7a8c6e;
+      --deep: #2c3028;
+      --warm: #b5956a;
+      --light: #e8e2d9;
+      --mid: #d4cec5;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--deep); overflow-x: hidden; font-size: 17px; }
+
+    /* Nav */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(249,246,241,0.95); border-bottom: 0.5px solid var(--light); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(6px); }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--deep); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; border-bottom: 1px solid var(--warm); padding-bottom: 2px; }
+
+    /* Page header */
+    .page-header { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 3rem; border-bottom: 0.5px solid var(--light); }
+    .page-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300; color: var(--deep); line-height: 1; margin-bottom: 1.2rem; }
+    .page-title em { font-style: italic; color: var(--warm); }
+    .page-desc { font-size: 0.92rem; font-weight: 300; line-height: 1.8; color: var(--deep); opacity: 0.7; max-width: 580px; }
+
+    /* Tab nav */
+    .tab-nav { max-width: 1100px; margin: 0 auto; padding: 0 3rem; display: flex; gap: 0; border-bottom: 0.5px solid var(--light); }
+    .tab-btn { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.2rem 1.5rem 1.2rem 0; margin-right: 2.5rem; border: none; background: none; cursor: pointer; color: var(--deep); opacity: 0.5; border-bottom: 2px solid transparent; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .tab-btn.active { opacity: 1; border-bottom-color: var(--warm); }
+    .tab-btn:hover { opacity: 0.9; }
+
+    /* Tab panels */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Academic projects grid */
+    .academic-wrap { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 5rem; }
+    .academic-intro { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: var(--deep); opacity: 0.7; margin-bottom: 3rem; max-width: 600px; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+    .project-card { position: relative; overflow: hidden; border-radius: 4px; border: 0.5px solid var(--light); background: var(--cream); transition: box-shadow 0.3s; }
+    .project-card:hover { box-shadow: 0 8px 32px rgba(44,48,40,0.1); }
+    .project-card-img { position: relative; overflow: hidden; height: 240px; }
+    .project-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .project-card:hover .project-card-img img { transform: scale(1.04); }
+    .project-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(44,48,40,0.15)); }
+    .project-card-body { padding: 1.6rem; }
+    .project-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.6rem; }
+    .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--deep); margin-bottom: 0.8rem; line-height: 1.2; }
+    .project-desc { font-size: 0.92rem; font-weight: 300; line-height: 1.7; color: var(--deep); opacity: 0.72; }
+
+    /* Project descriptions */
+    .project-expanded { display: none; }
+
+    /* Personal projects */
+    .personal-wrap { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 5rem; }
+
+    .personal-card {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 0;
+      border: 0.5px solid var(--light); border-radius: 4px; overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .personal-card.reverse { direction: rtl; }
+    .personal-card.reverse > * { direction: ltr; }
+
+    .personal-card-img { overflow: hidden; min-height: 320px; }
+    .personal-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .personal-card:hover .personal-card-img img { transform: scale(1.03); }
+
+    .personal-card-body { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .personal-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.8rem; }
+    .personal-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--deep); margin-bottom: 1.2rem; line-height: 1.1; }
+    .personal-title em { font-style: italic; color: var(--warm); }
+    .personal-desc { font-size: 0.98rem; font-weight: 300; line-height: 1.8; color: var(--deep); opacity: 0.75; }
+
+    /* AI video note */
+    .ai-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem;
+      background: rgba(181,149,106,0.08);
+      border-left: 2px solid var(--warm);
+      border-radius: 0 4px 4px 0;
+    }
+    .ai-note p { font-size: 0.78rem; font-weight: 300; line-height: 1.7; color: var(--deep); opacity: 0.75; }
+    .ai-note strong { font-weight: 500; color: var(--warm); opacity: 1; }
+
+    /* Skills chips on personal */
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+    .chip { font-size: 0.7rem; padding: 0.3rem 0.8rem; border: 0.5px solid var(--mid); border-radius: 2rem; color: var(--deep); opacity: 0.8; }
+
+    /* Footer */
+    footer { background: var(--deep); padding: 2.5rem 3rem; text-align: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--cream); margin-bottom: 0.3rem; }
+    .footer-sub { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .page-header { padding: 3rem 1.5rem 2rem; }
+      .tab-nav { padding: 0 1.5rem; }
+      .academic-wrap, .personal-wrap { padding: 3rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .personal-card { grid-template-columns: 1fr; }
+      .personal-card.reverse { direction: ltr; }
+      .personal-card-img { min-height: 220px; }
+      .personal-card-body { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">Maggie Birmingham</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="#">Abroad</a></li>
+  </ul>
+</nav>
+
+<!-- Page header -->
+<div class="page-header">
+  <p class="page-eyebrow">Portfolio</p>
+  <h1 class="page-title">Projects &amp; <em>Work</em></h1>
+  <p class="page-desc">A collection of academic and personal projects showcasing my growth in marketing, data analytics, technology, and creative problem-solving. I take pride in everything I create and always aim to give my best.</p>
+</div>
+
+<!-- Tabs -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('academic', this)">Academic Projects</button>
+  <button class="tab-btn" onclick="switchTab('personal', this)">Personal Projects</button>
+</div>
+
+<!-- Academic tab -->
+<div id="tab-academic" class="tab-panel active">
+  <div class="academic-wrap">
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-card-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/1752342850339-3XZ9ALU1QRXOBFQI2CVB/amama.png" alt="Amazon Analysis" />
+        </div>
+        <div class="project-card-body">
+          <p class="project-tag">Data Analytics · Business Strategy</p>
+          <h2 class="project-title">Amazon Analyses</h2>
+          <p class="project-desc">An in-depth analysis of Amazon's business strategies, market positioning, and competitive landscape. Applied data analytics tools to uncover patterns and develop strategic insights from real business data.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/1752340187450-KF9T8HONL8SU1ZFCD05G/1.png" alt="RIT Croatia Marketing Plan" />
+        </div>
+        <div class="project-card-body">
+          <p class="project-tag">Digital Marketing · International Business</p>
+          <h2 class="project-title">RIT Croatia Marketing Plan</h2>
+          <p class="project-desc">Developed a comprehensive digital marketing plan while studying abroad at RIT Croatia in Zagreb. Combined international business context with digital strategy to produce a real-world campaign proposal.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/1752341219324-1VF2LT9JXWZXABMMAU8P/IMG_2374.jpg" alt="Product Development and Pitch" />
+        </div>
+        <div class="project-card-body">
+          <p class="project-tag">Product Development · Entrepreneurship</p>
+          <h2 class="project-title">Product Development &amp; Pitch</h2>
+          <p class="project-desc">Conceived, developed, and pitched an original product concept from ideation through market research and go-to-market strategy. Presented to a panel as part of a competitive product innovation course at RIT.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-img">
+          <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/1754665193602-0BZNGD6V43VCQMW5XIXN/SQL.png" alt="Database Development" />
+        </div>
+        <div class="project-card-body">
+          <p class="project-tag">MIS · Database Management</p>
+          <h2 class="project-title">Database Development</h2>
+          <p class="project-desc">Designed and built a relational database from the ground up, applying SQL and database management principles learned in MGIS 320. The project involved schema design, query optimization, and data modeling for a real-world scenario.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Personal tab -->
+<div id="tab-personal" class="tab-panel">
+  <div class="personal-wrap">
+
+    <div class="personal-card">
+      <div class="personal-card-img">
+        <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/837f0836-d6a2-4e8b-b22e-71fe650bfc0e/python+image.jpg" alt="Learning Python" />
+      </div>
+      <div class="personal-card-body">
+        <p class="personal-tag">Self-Directed Learning</p>
+        <h2 class="personal-title">Learning <em>Python</em></h2>
+        <p class="personal-desc">Technology has always been something I've gravitated toward. With its growing role in nearly every industry — especially in business — I've made it a priority to keep building my tech skills. After taking a computer science class, I realized how much I enjoyed coding and wanted to keep learning, even outside of the classroom.</p>
+        <p class="personal-desc" style="margin-top:1rem;">I may not be a computer science major, but with so many resources available, I don't have to be. I've been learning the basics through LinkedIn Learning and DataCamp, and I'm excited to keep going.</p>
+        <div class="skill-chips">
+          <span class="chip">LinkedIn Learning</span>
+          <span class="chip">DataCamp</span>
+          <span class="chip">Python Basics</span>
+          <span class="chip">Data Structures</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="personal-card reverse">
+      <div class="personal-card-img" style="background:var(--deep);display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;padding:2rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:var(--warm);line-height:1;margin-bottom:1rem;">AI</div>
+          <div style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Exploration</div>
+        </div>
+      </div>
+      <div class="personal-card-body">
+        <p class="personal-tag">Technology Exploration</p>
+        <h2 class="personal-title">Playing with <em>AI</em></h2>
+        <p class="personal-desc">I understand that AI is evolving rapidly and becoming an increasingly important part of the world around us. It's here to stay, so it's important for me to learn how to use these tools effectively. Whenever I have the time, I explore new AI features and experiment with them to better understand their growing capabilities.</p>
+        <div class="ai-note">
+          <p><strong>Featured experiment:</strong> A video developed using 3 separate AI engines and many hours of processing — me as an action figure coming alive with my dog by my side.</p>
+        </div>
+        <div class="skill-chips">
+          <span class="chip">Generative AI</span>
+          <span class="chip">Video AI</span>
+          <span class="chip">Prompt Engineering</span>
+          <span class="chip">AI Tools</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-name">Maggie Birmingham</div>
+  <div class="footer-sub">MIS &amp; Global Business Management Student · Rochester Institute of Technology</div>
+</footer>
+
+<script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

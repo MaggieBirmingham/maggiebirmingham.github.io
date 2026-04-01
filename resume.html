@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | Maggie Birmingham</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f9f6f1;
+      --sage: #7a8c6e;
+      --deep: #2c3028;
+      --warm: #b5956a;
+      --light: #e8e2d9;
+      --mid: #d4cec5;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--deep); overflow-x: hidden; font-size: 17px; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(249,246,241,0.95); border-bottom: 0.5px solid var(--light); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(6px); }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--deep); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; border-bottom: 1px solid var(--warm); padding-bottom: 2px; }
+
+    .page-header-wrap { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+    .page-header { padding: 4rem 0 2.5rem; border-bottom: 0.5px solid var(--light); display: flex; align-items: flex-end; justify-content: space-between; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300; color: var(--deep); line-height: 1; }
+    .pdf-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.4rem; border: 0.5px solid var(--deep); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--deep); text-decoration: none; transition: all 0.2s; }
+    .pdf-link:hover { background: var(--deep); color: var(--cream); }
+
+    .resume-layout { display: grid; grid-template-columns: 2.2fr 1fr; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 3rem 5rem; }
+    .left-col { padding-right: 3rem; border-right: 0.5px solid var(--light); }
+    .right-col { padding-left: 2.5rem; }
+
+    .resume-section { padding: 2.5rem 0; border-bottom: 0.5px solid var(--light); }
+    .resume-section:last-child { border-bottom: none; }
+    .section-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1.8rem; }
+
+    .entry { margin-bottom: 2rem; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; gap: 1rem; }
+    .entry-title { font-size: 1rem; font-weight: 500; color: var(--deep); }
+    .entry-date { font-size: 0.75rem; color: var(--sage); font-weight: 300; white-space: nowrap; }
+    .entry-subtitle { font-size: 0.92rem; color: var(--deep); opacity: 0.6; font-weight: 300; margin-bottom: 0.7rem; }
+    .entry-sub2 { font-size: 0.9rem; font-style: italic; color: var(--warm); margin-bottom: 0.7rem; }
+    .entry-gpa { display: inline-block; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--sage); background: rgba(122,140,110,0.1); padding: 0.2rem 0.6rem; border-radius: 2rem; margin-bottom: 0.8rem; }
+    .bullets { list-style: none; padding: 0; }
+    .bullets li { font-size: 0.92rem; font-weight: 300; line-height: 1.7; color: var(--deep); opacity: 0.85; padding-left: 1rem; position: relative; margin-bottom: 0.3rem; }
+    .bullets li::before { content: '–'; position: absolute; left: 0; color: var(--warm); }
+
+    .skill-group { margin-bottom: 2rem; }
+    .skill-group-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.8rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { font-size: 0.82rem; font-weight: 300; padding: 0.3rem 0.7rem; border: 0.5px solid var(--mid); color: var(--deep); opacity: 0.85; border-radius: 2rem; }
+
+    .award-item { padding: 0.7rem 0; border-bottom: 0.5px solid var(--light); font-size: 0.93rem; font-weight: 300; color: var(--deep); line-height: 1.5; }
+    .award-item:last-child { border-bottom: none; }
+    .award-badge { display: inline-block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.15rem 0.5rem; background: rgba(181,149,106,0.15); color: var(--warm); border-radius: 2rem; margin-bottom: 0.25rem; }
+
+    .courses-section { background: var(--deep); padding: 2rem 0; overflow: hidden; }
+    .courses-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm); padding: 0 3rem; margin-bottom: 1.2rem; }
+    .marquee-wrap { overflow: hidden; }
+    .marquee-track { display: flex; gap: 2rem; width: max-content; animation: scroll 22s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .course-pill { font-size: 0.85rem; font-weight: 300; white-space: nowrap; padding: 0.45rem 1.1rem; border: 0.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); border-radius: 2rem; flex-shrink: 0; }
+
+    .community { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem; }
+    .community-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 2rem; }
+    .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .community-card { border: 0.5px solid var(--light); border-radius: 4px; overflow: hidden; }
+    .community-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .community-card-body { padding: 1.5rem; }
+    .community-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--deep); margin-bottom: 0.8rem; }
+    .community-card-text { font-size: 0.92rem; font-weight: 300; line-height: 1.8; color: var(--deep); opacity: 0.75; margin-bottom: 1.2rem; }
+    .donate-btn { display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 1.2rem; border: 0.5px solid var(--warm); color: var(--warm); text-decoration: none; border-radius: 2rem; transition: all 0.2s; }
+    .donate-btn:hover { background: var(--warm); color: #fff; }
+
+    footer { background: var(--deep); padding: 2.5rem 3rem; text-align: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--cream); margin-bottom: 0.3rem; }
+    .footer-sub { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .page-header-wrap { padding: 0 1.5rem; }
+      .resume-layout { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; }
+      .left-col { padding-right: 0; border-right: none; }
+      .right-col { padding-left: 0; border-top: 0.5px solid var(--light); padding-top: 2rem; }
+      .community { padding: 3rem 1.5rem; }
+      .community-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">Maggie Birmingham</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html" class="active">Resume</a></li>
+    <li><a href="leadership.html">Leadership</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="abroad.html">Abroad</a></li>
+  </ul>
+</nav>
+
+<div class="page-header-wrap">
+  <div class="page-header">
+    <h1 class="page-title">Resume</h1>
+    <a class="pdf-link" href="https://www.maggiebirmingham.com/s/Maggie-Birmingham-Resume-8ybb.pdf" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1" fill="none"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1"/><path d="M5 8h6M5 10.5h4" stroke="currentColor" stroke-width="0.8"/></svg>
+      View PDF
+    </a>
+  </div>
+</div>
+
+<div class="resume-layout">
+  <div class="left-col">
+
+    <div class="resume-section">
+      <p class="section-label">Education</p>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Rochester Institute of Technology</span>
+          <span class="entry-date">May 2027</span>
+        </div>
+        <p class="entry-subtitle">B.S. Global Business Management & Management Information Systems<br>Minors: Marketing · Event/Sports Management</p>
+        <span class="entry-gpa">Cumulative GPA: 4.0</span>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">RIT Croatia</span>
+          <span class="entry-date">Jan – May 2025</span>
+        </div>
+        <p class="entry-subtitle">Zagreb, Croatia</p>
+        <p style="font-size:0.82rem;font-weight:300;line-height:1.7;opacity:0.8;">Completed a full semester of business courses while traveling to 11 countries and dozens of cities.</p>
+      </div>
+    </div>
+
+    <div class="resume-section">
+      <p class="section-label">Work Experience</p>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Quest Diagnostics</span>
+          <span class="entry-date">Jun 2025 – Present</span>
+        </div>
+        <p class="entry-sub2">Digital Marketing Intern · Secaucus, NJ</p>
+        <ul class="bullets">
+          <li>Analyzed data from SEMrush and Google Search Console, built dashboards, and led SEO trainings</li>
+          <li>Collaborated cross-functionally in an agile team and created web pages in Adobe Experience Manager</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Rochester Institute of Technology</span>
+          <span class="entry-date">Aug 2024 – Jan 2025</span>
+        </div>
+        <p class="entry-sub2">Chief Learning Consultant · Rochester, NY</p>
+        <ul class="bullets">
+          <li>Assisted in development of innovative product concepts, strategies, and market research by providing mentorship</li>
+          <li>Facilitated open communication and problem-solving for 7 teams to refine their product and strategies</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Paramount Planners</span>
+          <span class="entry-date">Aug 2024 – Jul 2025</span>
+        </div>
+        <p class="entry-sub2">Trip Director and Coordinator · Manhattan, NY</p>
+        <ul class="bullets">
+          <li>Ensured seamless transition of guests to the event venue by providing clear directions</li>
+          <li>Assisted with registration, food, and beverage throughout the event</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Lighthouse International Film Festival</span>
+          <span class="entry-date">Feb – May 2023</span>
+        </div>
+        <p class="entry-sub2">Social Media Intern · Long Beach Island, NJ</p>
+        <ul class="bullets">
+          <li>Designed 15 engaging advertising visuals using Canva across 4 social media platforms</li>
+          <li>Implemented SEO strategies in social media posts via a content management system to increase engagement</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="resume-section">
+      <p class="section-label">Leadership</p>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Leadership Academy</span>
+          <span class="entry-date">Sep 2023 – Present</span>
+        </div>
+        <p class="entry-sub2">Director of Peer Mentorship · Rochester, NY</p>
+        <ul class="bullets">
+          <li>Directed training for mentors, preparing them with practical skills to guide first-year students effectively</li>
+          <li>Organized and led 4 events to cultivate relationships and enhance first-year integration with networking</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">RIT Delta Sigma Pi</span>
+          <span class="entry-date">Sep 2023 – May 2025</span>
+        </div>
+        <p class="entry-sub2">Senior Vice President & Marketing Chair · Rochester, NY</p>
+        <ul class="bullets">
+          <li>Planned and executed 6 recruitment events, conducted 22 interviews, and increased chapter membership by 106%</li>
+          <li>Managed marketing strategies for multiple chapter events, boosting attendance and engagement by 37%</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">RIT American Cancer Society on Campus</span>
+          <span class="entry-date">Dec 2023 – May 2025</span>
+        </div>
+        <p class="entry-sub2">Research and Development · Rochester, NY</p>
+        <ul class="bullets">
+          <li>Led outreach for Relay for Life by partnering with local high schools and building connections to support the cause</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-col">
+    <div class="resume-section" style="padding-top:2.5rem;">
+      <p class="section-label">Skills</p>
+      <div class="skill-group">
+        <p class="skill-group-label">Technical & Analytics</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Minitab</span>
+          <span class="skill-tag">SPSS</span>
+          <span class="skill-tag">QuickBooks</span>
+          <span class="skill-tag">Qualtrics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Productivity</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">Google Suite</span>
+          <span class="skill-tag">Agile</span>
+          <span class="skill-tag">Jira</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Marketing & Content</p>
+        <div class="skill-tags">
+          <span class="skill-tag">SEMrush</span>
+          <span class="skill-tag">Google Search Console</span>
+          <span class="skill-tag">Adobe Experience Manager</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Mailchimp</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Leadership</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Leadership</span>
+          <span class="skill-tag">Event Planning</span>
+          <span class="skill-tag">Team Management</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Problem-Solving</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-section">
+      <p class="section-label">Awards & Recognition</p>
+      <div class="award-item">
+        <div class="award-badge">Academic</div><br>
+        Dean's List (×4) — maintained 3.8+ GPA
+      </div>
+      <div class="award-item">
+        <div class="award-badge">Honor Society</div><br>
+        Beta Gamma Sigma — top 10% of undergraduate business students nationwide
+      </div>
+      <div class="award-item">
+        <div class="award-badge">Merit</div><br>
+        Presidential Scholar
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="courses-section">
+  <p class="courses-label">Coursework</p>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="course-pill">INTB 550 – Competing Globally</span>
+      <span class="course-pill">MGMT 330 – Design Thinking</span>
+      <span class="course-pill">MGMT 215 – Organizational Behavior</span>
+      <span class="course-pill">DECS 350 – Project Management</span>
+      <span class="course-pill">EGEN 132 – Product Innovation</span>
+      <span class="course-pill">INTB 225 – Global Business Environment</span>
+      <span class="course-pill">MKTG 320 – Digital Marketing</span>
+      <span class="course-pill">MKTG 310 – Marketing Research</span>
+      <span class="course-pill">MKTG 350 – Consumer Behavior</span>
+      <span class="course-pill">MGIS 320 – Database Management</span>
+      <span class="course-pill">BANA 255 – Data Literacy & Analytics</span>
+      <span class="course-pill">MGIS 130 – Information Systems</span>
+      <span class="course-pill">ACCT 110 – Financial Accounting</span>
+      <span class="course-pill">ACCT 210 – Management Accounting</span>
+      <span class="course-pill">INTB 550 – Competing Globally</span>
+      <span class="course-pill">MGMT 330 – Design Thinking</span>
+      <span class="course-pill">MGMT 215 – Organizational Behavior</span>
+      <span class="course-pill">DECS 350 – Project Management</span>
+      <span class="course-pill">EGEN 132 – Product Innovation</span>
+      <span class="course-pill">INTB 225 – Global Business Environment</span>
+      <span class="course-pill">MKTG 320 – Digital Marketing</span>
+      <span class="course-pill">MKTG 310 – Marketing Research</span>
+      <span class="course-pill">MKTG 350 – Consumer Behavior</span>
+      <span class="course-pill">MGIS 320 – Database Management</span>
+      <span class="course-pill">BANA 255 – Data Literacy & Analytics</span>
+      <span class="course-pill">MGIS 130 – Information Systems</span>
+      <span class="course-pill">ACCT 110 – Financial Accounting</span>
+      <span class="course-pill">ACCT 210 – Management Accounting</span>
+    </div>
+  </div>
+</div>
+
+<div class="community">
+  <p class="community-label">Community Service</p>
+  <div class="community-grid">
+    <div class="community-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/6e6798eb-1c5c-468b-9908-9bbe0c3d7db0/IMG_8882.jpeg" alt="American Cancer Society" />
+      <div class="community-card-body">
+        <h3 class="community-card-title">American Cancer Society</h3>
+        <p class="community-card-text">Both my sister and uncle had cancer, which made me want to support others going through something similar. I started volunteering with the American Cancer Society in high school and have stayed involved in college, where I now hold a leadership role supporting Relay for Life through outreach and increasing financial donations.</p>
+        <a class="donate-btn" href="https://donate.cancer.org/" target="_blank">Donate Now</a>
+      </div>
+    </div>
+    <div class="community-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/0c4d3d8a-074b-4a04-abd1-c40dc6736b10/IMG_0906.jpeg" alt="Kids Need More" />
+      <div class="community-card-body">
+        <h3 class="community-card-title">Kids Need More</h3>
+        <p class="community-card-text">This camp provides children with cancer, along with their siblings, the opportunity to attend for free. I've been going since I was 5. I started raising money for the camp at age 7 — holding bake sales, lemonade stands, and partnering with local businesses — trying to beat my previous year's total each time until I was 18.</p>
+        <a class="donate-btn" href="https://givebutter.com/kids-need-more" target="_blank">Donate Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-name">Maggie Birmingham</div>
+  <div class="footer-sub">MIS &amp; Global Business Management Student · Rochester Institute of Technology</div>
+</footer>
+
+</body>
+</html>
