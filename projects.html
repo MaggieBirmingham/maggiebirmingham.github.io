@@ -135,12 +135,13 @@
 <div class="page-header">
   <p class="page-eyebrow">Portfolio</p>
   <h1 class="page-title">Projects &amp; <em>Work</em></h1>
-  <p class="page-desc">A collection of academic and personal projects showcasing my growth in marketing, data analytics, technology, and creative problem-solving. I take pride in everything I create and always aim to give my best.</p>
+  <p class="page-desc">A collection of academic, technical, and personal projects showcasing my growth in marketing, data analytics, technology, and creative problem-solving. I take pride in everything I create and always aim to give my best.</p>
 </div>
 
 <!-- Tabs -->
 <div class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('academic', this)">Academic Projects</button>
+  <button class="tab-btn" onclick="switchTab('technical', this)">Technical Builds</button>
   <button class="tab-btn" onclick="switchTab('personal', this)">Personal Projects</button>
 </div>
 
@@ -155,8 +156,8 @@
         </div>
         <div class="project-card-body">
           <p class="project-tag">Data Analytics · Business Strategy</p>
-          <h2 class="project-title">Amazon Analyses</h2>
-          <p class="project-desc">An in-depth analysis of Amazon's business strategies, market positioning, and competitive landscape. Applied data analytics tools to uncover patterns and develop strategic insights from real business data.</p>
+          <h2 class="project-title">Cross-Cultural Amazon Analysis</h2>
+          <p class="project-desc">Evaluated Amazon's global expansion and supply chain strategies across 6 analytical reports by applying SWOT, VRIO, and institution-based frameworks — completed with a multi-time zone team while studying at RIT Croatia.</p>
         </div>
       </div>
 
@@ -178,7 +179,33 @@
         <div class="project-card-body">
           <p class="project-tag">Product Development · Entrepreneurship</p>
           <h2 class="project-title">Product Development &amp; Pitch</h2>
-          <p class="project-desc">Conceived, developed, and pitched an original product concept from ideation through market research and go-to-market strategy. Presented to a panel as part of a competitive product innovation course at RIT.</p>
+          <p class="project-desc">Secured 1st place in a competitive pitch competition by constructing business case models, unit economics, market sizing benchmarks, and competitive positioning strategies — conceived, developed, and pitched an original product concept from ideation through go-to-market strategy.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Technical tab -->
+<div id="tab-technical" class="tab-panel">
+  <div class="academic-wrap">
+    <p class="academic-intro">Hands-on technical builds and strategic frameworks — this site itself is hosted and coded on GitHub Pages, and I like keeping the tools I work with close to what I'm actually shipping.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-card-img" style="background:var(--deep);display:flex;align-items:center;justify-content:center;">
+          <!-- TODO: replace with a screenshot of one of your Tkinter GUI applications -->
+          <div style="text-align:center;padding:1.5rem;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--warm);line-height:1;">Python</div>
+            <div style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:0.5rem;">Tkinter GUI</div>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <p class="project-tag">Python · Tkinter · GUI Development</p>
+          <h2 class="project-title">Python GUI Applications</h2>
+          <!-- TODO: add a sentence or two describing the specific Tkinter app(s) — what they do, the problem they solve, and any notable features -->
+          <p class="project-desc">Built desktop applications with graphical user interfaces using Python's Tkinter library, applying object-oriented programming principles to create functional, user-friendly tools.</p>
         </div>
       </div>
 
@@ -189,7 +216,7 @@
         <div class="project-card-body">
           <p class="project-tag">MIS · Database Management</p>
           <h2 class="project-title">Database Development</h2>
-          <p class="project-desc">Designed and built a relational database from the ground up, applying SQL and database management principles learned in MGIS 320. The project involved schema design, query optimization, and data modeling for a real-world scenario.</p>
+          <p class="project-desc">Designed and built a relational database from the ground up, applying SQL and database management principles learned in MGIS 320 — schema design, query optimization, and data modeling for a real-world scenario.</p>
         </div>
       </div>
 

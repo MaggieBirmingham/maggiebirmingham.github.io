@@ -94,14 +94,14 @@
     .orgs-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); margin-bottom: 3rem; }
 
     .org-card {
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
       border: 0.5px solid var(--light); border-radius: 4px; overflow: hidden;
       margin-bottom: 2rem;
     }
     .org-card.reverse { direction: rtl; }
     .org-card.reverse > * { direction: ltr; }
 
-    .org-card-img { position: relative; overflow: hidden; min-height: 520px; }
+    .org-card-img { position: relative; overflow: hidden; min-height: 340px; }
     .org-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
     .org-card:hover .org-card-img img { transform: scale(1.03); }
 
@@ -198,8 +198,8 @@
     <div class="stat-label">Exec board positions</div>
   </div>
   <div class="stat">
-    <div class="stat-num">4</div>
-    <div class="stat-label">Active club memberships</div>
+    <div class="stat-num">92%</div>
+    <div class="stat-label">Avg. team presentation score</div>
   </div>
   <div class="stat">
     <div class="stat-num">&gt;150</div>
@@ -224,24 +224,12 @@
       <p class="org-tag">Professional Fraternity</p>
       <h2 class="org-title">Delta <em>Sigma Pi</em></h2>
       <p class="org-desc">Delta Sigma Pi is a co-ed professional business fraternity. I've been involved since my first semester at RIT — this organization pushed me out of my comfort zone, helped me develop critical professional skills, and build an incredible network.</p>
-
-      <span class="org-role">Senior Vice President</span>
-      <ul class="org-highlights" style="margin-top:0.8rem;">
+      <ul class="org-highlights">
         <li>Planned and executed 6 recruitment events, conducting 22 interviews</li>
-        <li>Increased chapter membership by 106%, growing the chapter to its largest size</li>
+        <li>Increased chapter membership by 106% and event engagement by 61% through targeted marketing campaigns as Senior Vice President</li>
+        <li>Organized the chapter's annual Roseball formal, managing event logistics and programming</li>
       </ul>
-
-      <span class="org-role" style="margin-top:1.2rem;">Banquet Chair</span>
-      <ul class="org-highlights" style="margin-top:0.8rem;">
-        <li>Organized and executed the annual chapter banquet, coordinating venue, catering, and logistics for 60+ attendees</li>
-        <li>Managed a committee of 5 members to deliver a professional and memorable event on time and within budget</li>
-      </ul>
-
-      <span class="org-role" style="margin-top:1.2rem;">Marketing Chair</span>
-      <ul class="org-highlights" style="margin-top:0.8rem;">
-        <li>Managed marketing strategies for multiple chapter events, boosting attendance and engagement by 37%</li>
-        <li>Designed promotional materials and social media content to increase chapter visibility across campus</li>
-      </ul>
+      <span class="org-role">Senior Vice President</span>
     </div>
   </div>
 
@@ -254,26 +242,31 @@
       <p class="org-tag">RIT Program</p>
       <h2 class="org-title">The Leadership <em>Academy</em></h2>
       <p class="org-desc">The Leadership Academy is funded by Rochester Institute of Technology and housed in Saunders College of Business. Its goal is to help students build the leadership skills they need to succeed in the workplace — open to anyone on campus.</p>
-
-      <span class="org-role">Peer Mentorship Program Director</span>
-      <ul class="org-highlights" style="margin-top:0.8rem;">
-        <li>Directed training for mentors, preparing them with practical skills to guide first-year students effectively</li>
-        <li>Organized and led 4 networking events to cultivate relationships and enhance first-year integration</li>
+      <ul class="org-highlights">
+        <li>Achieved a 92% average team presentation score across 7 mentored student teams through weekly coaching on market research, problem-solving, and pitch strategy</li>
+        <li>Created a structured succession framework to ensure long-term organizational continuity across leadership transitions</li>
+        <li>Organized and led 10+ development events supporting 100+ first-year students</li>
       </ul>
+      <span class="org-role">Chief Leadership Development Officer</span>
+    </div>
+  </div>
 
-      <span class="org-role" style="margin-top:1.2rem;">Director of Speaker Series</span>
-      <ul class="org-highlights" style="margin-top:0.8rem;">
-        <li>Coordinated and hosted a series of professional speaker events, connecting students with industry leaders</li>
-        <li>Managed logistics, outreach, and promotion for each event to maximize student attendance and engagement</li>
+  <!-- Event Management & Master of Ceremonies -->
+  <div class="org-card">
+    <div class="org-card-img">
+      <!-- TODO: replace with a photo from the RITZ dinner or another MC engagement -->
+      <img src="https://images.squarespace-cdn.com/content/v1/685da3a97cd1a01fe40636a0/bd808efd-0be9-4b56-843c-a6d4a4921651/LA%40SAlumniPanel-03.jpg" alt="Event Management & MC" />
+    </div>
+    <div class="org-card-body">
+      <p class="org-tag">Event Management &amp; Hosting</p>
+      <h2 class="org-title">Event Management <em>&amp; MC</em></h2>
+      <p class="org-desc">Beyond planning and coordinating events behind the scenes, I've had the opportunity to take the stage as Master of Ceremonies for several high-profile Saunders College events.</p>
+      <ul class="org-highlights">
+        <li>Emceed the RITZ "Passport to Hospitality" Alumni Dinner</li>
+        <li>Hosted a live Q&amp;A with RIT President Bill Sanders</li>
+        <li>Hosted a live Q&amp;A with Mark Laport</li>
       </ul>
-
-      <span class="org-role" style="margin-top:1.2rem;">Outreach Officer</span>
-      <ul class="org-highlights" style="margin-top:0.8rem;">
-        <li>Led outreach efforts to recruit new members and expand the Leadership Academy's presence on campus</li>
-        <li>Built relationships with student organizations and faculty to increase program awareness and participation</li>
-      </ul>
-
-      <a href="https://www.rit.edu/business/leadership-academy-saunders" target="_blank" style="display:inline-block; margin-top: 1.2rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.9rem; border: 0.5px solid var(--deep); color: var(--deep); text-decoration: none; border-radius: 2rem; transition: all 0.2s;" onmouseover="this.style.background='var(--deep)';this.style.color='var(--cream)'" onmouseout="this.style.background='';this.style.color='var(--deep)'">Learn More</a>
+      <span class="org-role">Master of Ceremonies</span>
     </div>
   </div>
 </section>
